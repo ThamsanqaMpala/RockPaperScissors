@@ -6,9 +6,24 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <h1>Lets <button id="startGame" onclick="playRounds(playerSelection, getComputerChoice)">PLAY</button> Rock Paper Scissors</h1>
+    <h1>Lets <!--<button id="startGame" onclick="playRounds(playerSelection, getComputerChoice)"-->PLAY</button> Rock Paper Scissors</h1>
+    <!---Buttons Calling Function and Passing Player Choice-->
+    <button id="rock" onclick="playRounds('rock')">ROCK</button>
+    <button id="paper" onclick="playRounds('paper')">PAPER</button>
+    <button id="scissors" onclick="playRounds('scissors')">SCISSORS</button>
 
-
+    <div id="display">
+        <ul id="displayTags">
+            <li id="pc">Player Choice:</li>
+            <li id="cc">Computer Choice:</li>
+            <li id="r">Round:</li>
+            <li id="w">Winner:</li>
+            <li id="ps">Player Score:</li>
+            <li id="cs">Computer Score:</li>
+            <li id="pa"></li>
+        </ul>
+    </div>
+    <p class="test"></p>
 
     <script src="index.js"></script>
 </body>

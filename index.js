@@ -1,20 +1,32 @@
+const r = document.getElementById('r');
+const w = document.getElementById('w');
+const cs = document.getElementById('cs');
+const ps = document.getElementById('ps');
+const pc = document.getElementById('pc');
+const cc = document.getElementById('cc');
+
+/*const btn_rock = document.getElementById("rock");
+btn_rock.addEventListener('', playerSelection(rock));
+
+const btn_paper = document.getElementById("paper");
+btn_paper.addEventListener('click', playerSelection(paper));
+
+
+const btn_scissors = document.getElementById("scissors");
+btn_scissors.addEventListener('click', playerSelection(scissors));*/
 
 
 
 
-/*const btn = document.getElementById("compValue")
+//Determining Computer Select
+function getComputerSelect(){
 
-btn.addEventListener('click', getComputerChoice());
-*/
-
-
-
-function getComputerChoice(playerSelection){
-
+    //Generating Random Number Between 1 and 3
     const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
     const randomNumber = getRandomNumber(1, 3);
 
     let compInput = "";
+    //Assigning Value To Generated Number
     switch(randomNumber){
         case 1:
             console.log("Computer Picked Rock");
@@ -33,75 +45,115 @@ function getComputerChoice(playerSelection){
     }
     return compInput;
 }
-function playRounds(playerSelection, computerSelection){
-    let roundNumuber = 1;
-    let playAgain = false;
+
+
+/*Function Called By Player Select*/
+let playerSelect = "";
+function playRounds(playerSelect){
+    playerSelect = playerSelect.toUpperCase();
+    roundNumuber = 1;
+    let futhi = false;
     let playerScore = 0;
     let computerScore = 0;
 
+    //w.textContent = playerSelect);
+    
+        /*Loop To Check Selects Anzd Determine Winner*/
         do {
-            console.log(`Round ${roundNumuber}`);
-            console.log(`Player Score = ${playerScore}`);
-            console.log(`Computer Score = ${computerScore}`);
+            
+            r.textContent = `Round ${roundNumuber}`;
+            ps.textContent = `Player Score = ${playerScore}`;
+            cs.textContent = `Computer Score = ${computerScore}`;
+            pc.textContent = playerSelect;
 
-            let computerChoice = computerSelection();
-            let playerChoice = playerSelection();
+            let computerSelect = getComputerSelect();
+            cc.textContent = computerSelect;
+            
 
-            if (computerChoice == playerChoice) {
-                console.log("Tie");
-            } else if ((computerChoice == "ROCK") && (playerChoice == "PAPER")) {
-                console.log(`${playerChoice} beats ${computerChoice}. ${playerChoice} wins`);
+            if (computerSelect == playerSelect) {
+                w.textContent = "Tie";
+                futhi = playAgain();
+            } else if ((computerSelect == "ROCK") && (playerSelect == "PAPER")) {
+                w.textContent = `${playerSelect} beats ${computerSelect}. ${playerSelect} wins`;
                 playerScore++;
-            } else if ((computerChoice == "PAPER") && (playerChoice == "ROCK")) {
-                console.log(`${computerChoice} beats ${playerChoice}. ${computerChoice} wins`);
+                futhi = playAgain();
+            } else if ((computerSelect == "PAPER") && (playerSelect == "ROCK")) {
+                w.textContent = `${computerSelect} beats ${playerSelect}. ${computerSelect} wins`;
                 computerScore++;
-            } else if ((computerChoice == "ROCK") && (playerChoice == "SCISSORS")) {
-                console.log(`${computerChoice} beats ${playerChoice}. ${computerChoice} wins`);
+                futhi = playAgain();
+            } else if ((computerSelect == "ROCK") && (playerSelect == "SCISSORS")) {
+                w.textContent = `${computerSelect} beats ${playerSelect}. ${computerSelect} wins`;
                 computerScore++;
-            } else if ((playerChoice == "ROCK") && (computerChoice == "SCISSORS")) {
-                console.log(`${playerChoice} beats ${computerChoice}. ${playerChoice} wins`);
+                futhi = playAgain();
+            } else if ((playerSelect == "ROCK") && (computerSelect == "SCISSORS")) {
+                w.textContent = `${playerSelect} beats ${computerSelect}. ${playerSelect} wins`;
                 playerScore++;
-            } else if ((computerChoice == "SCISSORS") && (playerChoice == "PAPER")) {
-                console.log(`${computerChoice} beats ${playerChoice}. ${computerChoice} wins`);
-                computerScore++;roundcompNumuber
-            } else if ((computerChoice == "PAPER") && (playerChoice == "SCISSORS")) {
-                console.log(`${playerChoice} beats ${computerChoice}. ${playerChoice} wins`);
+                futhi = playAgain();
+            } else if ((computerSelect == "SCISSORS") && (playerSelect == "PAPER")) {
+                w.textContent = `${computerSelect} beats ${playerSelect}. ${computerSelect} wins`;
+                computerScore++;
+                futhi = playAgain();
+            } else if ((computerSelect == "PAPER") && (playerSelect == "SCISSORS")) {
+                w.textContent = `${playerSelect} beats ${computerSelect}. ${playerSelect} wins`;
                 playerScore++;
+                futhi = playAgain();
             }
+            
+            //Play Again?
+            
+            r.textContent = `Round ${roundNumuber}`;
+            ps.textContent = `Player Score = ${playerScore}`;
+            cs.textContent = `Computer Score = ${computerScore}`;
+        } while (futhi == true); //Continues To Play Untill Play Again Is NO
+}
+function playAgain(){
+    const pa = document.getElementById('pa');
+    pa.textContent = 'play again?????';
 
+    let yes = document.createElement('button');
+    pa.appendChild(yes);
+    yes.innerHTML = 'YES';
+    yes.onclick = function(){
+        return true;
 
-            let anotherGame = prompt("Play again, YES(Y) or NO(N) ?");
-            anotherGame = anotherGame.toUpperCase();
-            if (anotherGame == "YES" || anotherGame == "Y") {
-                playAgain = true;
-                roundNumuber++;
-            }else{
-                process.exit(0);
-            }
-        } while (playAgain = true);
+    }
+    
+    let no = document.createElement('button');
+    pa.appendChild(no);
+    no.textContent = 'NO';
+    yes.onclick = function(){
+        return false;
+    }
+
     return;
+    anotherGame = anotherGame.toUpperCase();
+    if (anotherGame == "YES" || anotherGame == "Y") {
+        playAgain = true;
+        roundNumuber++;
+    }else{
+        process.exit(0);
+    }
 }
 
+/*
+function playerSelection(){
 
-function playerSelection(value){
 
-    console.log("What`s your choice");
-    let playerInput = prompt("Rock, Paper or Scissors ? ");
-    playerInput = playerInput.toUpperCase();
+    let playerInput = value.toUpperCase();
     switch(playerInput){
         case "ROCK":
-            console.log("Player Picked Rock");
+            w.textContent = "Player Picked Rock");
             break;
         case "PAPER":
-            console.log("Player Picked Paper");
+            w.textContent = "Player Picked Paper");
             break;
         case "SCISSORS":
-            console.log("Player Picked Scissors");
+            w.textContent = "Player Picked Scissors");
             break;
         default:
-            console.log("Oops something went wrong")
+            w.textContent = "Oops something went wrong")
     }
-    return playerInput;
+    let computerSelect = getComputerSelect();
+    playRounds(playerInput, computerSelect);
 }
-
-
+*/
